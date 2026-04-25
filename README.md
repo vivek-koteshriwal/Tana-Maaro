@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Tana Maaro
 
-## Getting Started
+Tana Maaro is a combined product repository containing:
 
-First, run the development server:
+- the public website and web application in the repository root
+- the mobile application in [`mobile/`](/Users/vivekkoteshriwal/Documents/Tana Maaro Web V1 copy 2/mobile)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+The root app is a Next.js application that serves both the marketing site and the authenticated web experience. The mobile client is a Flutter application that shares the same Firebase/Firestore data model.
+
+## Deployable Folders
+
+- Web app + website: repository root
+- Mobile app: [`mobile/`](/Users/vivekkoteshriwal/Documents/Tana Maaro Web V1 copy 2/mobile)
+
+## Project Structure
+
+```text
+.
+├── app/                 # Next.js routes, pages, and API handlers
+├── components/          # Shared React UI by domain
+├── lib/                 # Auth, DB, Firebase, Redis, S3, utilities
+├── public/              # Static web assets
+├── scripts/             # Operational scripts
+├── mobile/              # Flutter mobile app
+│   ├── lib/
+│   ├── assets/
+│   ├── android/
+│   └── ios/
+├── firebase.json
+├── firestore.rules
+├── storage.rules
+└── next.config.ts
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Local Development
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Web
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm install
+npm run dev
+```
 
-## Learn More
+Open `http://localhost:3000`.
 
-To learn more about Next.js, take a look at the following resources:
+Note: the `dev` script uses Webpack intentionally. Turbopack currently mis-resolves CSS imports from this repo path and is kept only as an opt-in fallback via `npm run dev:turbo`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Mobile
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+cd mobile
+flutter pub get
+flutter run
+```
 
-## Deploy on Vercel
+## Environment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The web application expects Firebase, Redis, JWT, mail, and S3 configuration in `.env.local`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Core integrations currently in use:
+
+- Firebase Auth
+- Firestore
+- Firebase Storage rules files
+- Redis cache / rate limiting
+- AWS S3 signed uploads
+
+## Current Architecture Notes
+
+- Website and web app are intentionally combined in one Next.js deployment.
+- API routes live under `app/api/*`.
+- The source of truth for user, post, event, and battle data is Firestore.
+- Mobile and web should stay schema-compatible because they operate on the same Firebase data.
+
+## Cleanup Notes
+
+Recent cleanup removed:
+
+- obsolete JSON file database fallback
+- unused phone-auth web flow
+- legacy Mongoose-only model files
+- test scripts and log artifacts
+- local editor/build/cache directories
+
+## Deployment
+
+Use the repository root for web deployment. Use [`docs/aws-deployment.md`](/Users/vivekkoteshriwal/Documents/Tana Maaro Web V1 copy 2/docs/aws-deployment.md) for the recommended AWS launch plan and service mapping.

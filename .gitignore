@@ -23,6 +23,22 @@
 # misc
 .DS_Store
 *.pem
+*.swp
+*.swo
+*.log
+
+# npm cache
+.npm_cache/
+
+# mobile build artifacts
+mobile/build/
+mobile/.dart_tool/
+mobile/.flutter-plugins
+mobile/.flutter-plugins-dependencies
+
+# logs
+dev-output.log
+firebase-debug.log
 
 # debug
 npm-debug.log*
@@ -35,6 +51,24 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# editor / assistant state
+.vscode/
+.idea/
+.claude/
+mobile/.vscode/
+mobile/.idea/
+mobile/.claude/
+
+# mobile generated files
+mobile/android/.gradle/
+mobile/android/app/.cxx/
+mobile/android/local.properties
+mobile/ios/Flutter/Generated.xcconfig
+mobile/ios/Flutter/flutter_export_environment.sh
+
+# local uploaded media
+public/uploads/
 
 # typescript
 *.tsbuildinfo

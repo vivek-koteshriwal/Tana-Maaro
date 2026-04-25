@@ -1,26 +1,242 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
+@custom-variant dark (&:is(.dark *));
+
+/* ─── Mobile-parity Design Tokens ─── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: oklch(0.145 0 0);         /* #0E0E0E - landingBackground */
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.165 0 0);               /* #191919 - landingSurface */
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.165 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.52 0.22 27);         /* #DC2626 - Savage Red */
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.205 0 0);          /* #171717 */
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.205 0 0);
+  --muted-foreground: oklch(0.67 0 0);    /* #ABABAB */
+  --accent: oklch(0.205 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.58 0.22 27);
+  --border: oklch(1 0 0 / 8%);
+  --input: oklch(1 0 0 / 6%);
+  --ring: oklch(0.52 0.22 27);
+  --radius: 0.75rem;
+
+  /* Tanamaaro Brand Tokens */
+  --arena-bg: #0E0E0E;
+  --arena-surface: #191919;
+  --arena-surface-high: #1F1F1F;
+  --arena-primary: #FF3B3B;
+  --arena-primary-soft: #FF8E84;
+  --arena-muted: #ABABAB;
+  --arena-outline: #484848;
+}
+
+.dark {
+  --background: oklch(0.055 0 0);        /* #000000 */
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.165 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.165 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.52 0.22 27);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.205 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.205 0 0);
+  --muted-foreground: oklch(0.67 0 0);
+  --accent: oklch(0.205 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 8%);
+  --input: oklch(1 0 0 / 6%);
+  --ring: oklch(0.52 0.22 27);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-destructive: var(--destructive);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+
+  /* Font family tokens */
+  --font-epilogue: var(--font-epilogue);
+  --font-manrope: var(--font-manrope);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Font utility classes */
+.font-epilogue {
+  font-family: var(--font-epilogue), sans-serif;
+}
+.font-manrope {
+  font-family: var(--font-manrope), sans-serif;
+}
+
+/* ── Scrollbar – Savage Red ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #000;
+}
+::-webkit-scrollbar-thumb {
+  background: #1F1F1F;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #DC2626;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-black text-white;
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   ARENA  (battles / events / feed) — replaces inline styles
+   ══════════════════════════════════════════════════════ */
+
+/* Backgrounds */
+.arena-bg          { background-color: #0E0E0E; }
+.arena-surface     { background-color: #191919; }
+.arena-surface-hi  { background-color: #1F1F1F; }
+
+/* Text colours */
+.text-arena-primary      { color: #FF3B3B; }
+.text-arena-primary-soft { color: #FF8E84; }
+.text-arena-muted        { color: #ABABAB; }
+
+/* Icon / border colours */
+.border-arena-primary      { border-color: #FF3B3B; }
+.border-arena-primary-soft { border-color: #FF8E84; }
+.border-arena-outline      { border-color: #484848; }
+
+/* Glow backgrounds (alpha variants) */
+.bg-arena-primary-5  { background-color: rgba(255,59,59,0.05); }
+.bg-arena-primary-8  { background-color: rgba(255,59,59,0.08); }
+.bg-arena-primary-10 { background-color: rgba(255,59,59,0.10); }
+.bg-arena-primary-14 { background-color: rgba(255,59,59,0.14); }
+.bg-arena-primary-16 { background-color: rgba(255,59,59,0.16); }
+.bg-arena-primary-18 { background-color: rgba(255,59,59,0.18); }
+.bg-arena-primary-20 { background-color: rgba(255,59,59,0.20); }
+.bg-arena-primary-soft-15 { background-color: rgba(255,142,132,0.15); }
+.bg-arena-primary-soft-25 { background-color: rgba(255,142,132,0.25); }
+
+/* Gradient buttons */
+.btn-arena-filled {
+  background: linear-gradient(90deg, #FF8E84, #FF3B3B);
+  box-shadow: 0 8px 20px rgba(255,59,59,0.22);
+}
+.btn-arena-filled:hover { opacity: 0.9; }
+
+/* Sticky bar backdrop */
+.arena-appbar {
+  background-color: rgba(14,14,14,0.92);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+.event-appbar {
+  background-color: rgba(14,14,14,0.92);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+
+/* Event hero gradient overlay (city cards) */
+.city-card-gradient {
+  background: linear-gradient(to bottom, transparent 0%, rgba(25,25,25,0.16) 70%, #191919 100%);
+}
+
+/* City-specific card backgrounds */
+.city-delhi     { background: linear-gradient(135deg,#1a0a0a 0%,#2d1010 50%,#0e0e0e 100%); }
+.city-mumbai    { background: linear-gradient(135deg,#0a1020 0%,#101828 50%,#0e0e0e 100%); }
+.city-bangalore { background: linear-gradient(135deg,#0a1a0a 0%,#0f200f 50%,#0e0e0e 100%); }
+.city-hyderabad { background: linear-gradient(135deg,#1a120a 0%,#241808 50%,#0e0e0e 100%); }
+.city-pune      { background: linear-gradient(135deg,#120a1a 0%,#1a0f24 50%,#0e0e0e 100%); }
+.city-chennai   { background: linear-gradient(135deg,#0e1a10 0%,#122014 50%,#0e0e0e 100%); }
+
+/* Battle category card gradients */
+.arena-college { background: linear-gradient(135deg,#111111,#171717); }
+.arena-city    { background: linear-gradient(135deg,#240D10,#1A0F11); }
+.arena-creator { background: linear-gradient(135deg,#0F0F10,#191112); }
+.arena-memer   { background: linear-gradient(135deg,#111114,#17171A); }
+
+/* Profile hero gradient */
+.profile-hero-gradient {
+  background: linear-gradient(to bottom, rgba(255,59,59,0.08) 0%, #0e0e0e 22%, #0e0e0e 100%);
+}
+
+/* Avatar ring gradient */
+.avatar-ring {
+  background: linear-gradient(135deg, #FF8E84, #FF3B3B);
+}
+
+/* Skeleton pulse animation ── */
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.7; }
+}
+.skeleton {
+  animation: skeleton-pulse 1.6s ease-in-out infinite;
+  background-color: #1F1F1F;
+  border-radius: 4px;
+}
+
+/* ── Tab underline slide animation ── */
+@keyframes tab-slide-in {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* ── Login flame glow ── */
+.flame-glow {
+  background: radial-gradient(circle, rgba(220,38,38,0.18) 0%, transparent 70%);
+}
+
+/* ── Live pulse dot ── */
+@keyframes live-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.3); }
+}
+.live-dot {
+  animation: live-pulse 1.4s ease-in-out infinite;
 }
