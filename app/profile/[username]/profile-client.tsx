@@ -7,7 +7,7 @@ import { EditProfileModal } from "@/components/profile/edit-profile-modal";
 import { FollowListModal } from "@/components/profile/follow-list-modal";
 import { RoastAvatar } from "@/components/shared/roast-avatar";
 import Link from "next/link";
-import { Settings, Mic, Trophy, Zap, Edit2, Swords, Shield, Star, Flame } from "lucide-react";
+import { Settings, Mic, Trophy, Zap, Edit2, Swords, Shield, Star, Flame, Trash2 } from "lucide-react";
 import { BADGE_META, BattleBadge, UserBattleStats, BattleRank } from "@/lib/models/battle";
 
 type ProfileTab = "roasts" | "challenges";
@@ -374,17 +374,26 @@ export default function ProfileClient({ user, isOwner, isFollowing: initFollowin
 
                     {/* CTA */}
                     {isOwner ? (
-                        <EditProfileModal
-                            user={editableUser}
-                            trigger={
-                                <button
-                                    type="button"
-                                    className="w-full h-[54px] flex items-center justify-center rounded-[16px] border border-[#FF3B3B]/92 font-epilogue font-extrabold text-[13px] tracking-[1.7px] uppercase text-white hover:bg-white/5 transition-colors mb-0"
-                                >
-                                    MANAGE IDENTITY
-                                </button>
-                            }
-                        />
+                        <div className="grid w-full gap-3 sm:grid-cols-2">
+                            <EditProfileModal
+                                user={editableUser}
+                                trigger={
+                                    <button
+                                        type="button"
+                                        className="w-full h-[54px] flex items-center justify-center rounded-[16px] border border-[#FF3B3B]/92 font-epilogue font-extrabold text-[13px] tracking-[1.7px] uppercase text-white hover:bg-white/5 transition-colors"
+                                    >
+                                        MANAGE IDENTITY
+                                    </button>
+                                }
+                            />
+                            <Link
+                                href="/delete-account"
+                                className="w-full h-[54px] flex items-center justify-center gap-2 rounded-[16px] border border-[#FF8E84]/35 font-epilogue font-extrabold text-[13px] tracking-[1.7px] uppercase text-[#FF8E84] hover:bg-[#FF8E84]/10 transition-colors"
+                            >
+                                <Trash2 className="w-4 h-4" />
+                                Delete Account
+                            </Link>
+                        </div>
                     ) : currentUserId ? (
                         <button type="button" onClick={handleToggleFollow} disabled={toggling}
                             className={`w-full h-[60px] flex items-center justify-center rounded-[14px] font-epilogue font-extrabold text-[14px] tracking-[1.4px] uppercase text-white transition-all disabled:opacity-60 ${

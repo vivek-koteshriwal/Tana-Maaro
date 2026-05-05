@@ -6,6 +6,7 @@ import { useAuth } from "@/components/auth/auth-provider";
 import Link from "next/link";
 import { Eye, EyeOff, Loader2, Flame } from "lucide-react";
 import { auth } from "@/lib/firebase";
+import { ACCOUNT_DELETION_WINDOW_DAYS } from "@/lib/account-deletion";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 export default function LoginPage() {
@@ -28,7 +29,7 @@ export default function LoginPage() {
 
     useEffect(() => {
         if (searchParams.get("accountDeletion") === "scheduled") {
-            setSuccess("Your account is scheduled for permanent deletion in 7 days. Sign in before then if you want to reactivate it.");
+            setSuccess(`Your account is scheduled for permanent deletion in ${ACCOUNT_DELETION_WINDOW_DAYS} days. Sign in before then if you want to reactivate it.`);
         }
     }, [searchParams]);
 

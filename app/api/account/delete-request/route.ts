@@ -1,17 +1,14 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { verifyAuth } from "@/lib/auth";
-import { hasPendingDeletionExpired } from "@/lib/account-deletion";
+import { DELETE_ACCOUNT_REASONS, hasPendingDeletionExpired } from "@/lib/account-deletion";
 
-const ALLOWED_REASONS = new Set([
-    "Taking a break",
-    "Privacy concerns",
-    "Too many notifications",
-    "Found another platform",
-    "Not useful anymore",
-    "Temporary issue",
-    "Other",
-]);
+const ALLOWED_REASONS = new Set(DELETE_ACCOUNT_REASONS);
+
+interface DeletionUserRecord {
+    status?: string;
+    scheduledDeletionAt?: string | null;
+}
 
 export async function POST(req: Request) {
     try {
@@ -36,7 +33,7 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: "Type DELETE to confirm account deletion." }, { status: 400 });
         }
 
-        const user = await db.findUserById(authUser.id) as any;
+        const user = await db.findUserById(authUser.id) as DeletionUserRecord | null;
         if (!user) {
             return NextResponse.json({ error: "User not found." }, { status: 404 });
         }
@@ -63,7 +60,7 @@ export async function POST(req: Request) {
             userId: authUser.id,
             reason: normalizedReason,
             feedback: normalizedFeedback,
-        }) as any;
+        }) as DeletionUserRecord | null;
 
         const response = NextResponse.json({
             message: "Your account has been scheduled for deletion.",

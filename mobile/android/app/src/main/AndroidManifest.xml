@@ -1,0 +1,69 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tanamaaro.tanamaaro_mobile">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32"/>
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO"/>
+    <application
+        android:label="Tana Maaro"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher"
+        android:name="${applicationName}">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:theme="@style/LaunchTheme"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="adjustResize">
+            <meta-data
+              android:name="io.flutter.embedding.android.NormalTheme"
+              android:resource="@style/NormalTheme"
+              />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="tanamaaro" android:host="user" />
+                <data android:scheme="tanamaaro" android:host="profile" />
+                <data android:scheme="tanamaaro" android:host="post" />
+                <data android:scheme="tanamaaro" android:host="tag" />
+                <data android:scheme="tanamaaro" android:host="category" />
+                <data android:scheme="tanamaaro" android:host="event" />
+                <data android:scheme="tanamaaro" android:host="events" />
+                <data android:scheme="tanamaaro" android:host="battle" />
+                <data android:scheme="app" android:host="user" />
+                <data android:scheme="app" android:host="profile" />
+                <data android:scheme="app" android:host="post" />
+                <data android:scheme="app" android:host="tag" />
+                <data android:scheme="app" android:host="category" />
+                <data android:scheme="app" android:host="event" />
+                <data android:scheme="app" android:host="events" />
+                <data android:scheme="app" android:host="battle" />
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="https" android:host="tanamaaro.com" android:pathPrefix="/user/" />
+                <data android:scheme="https" android:host="tanamaaro.com" android:pathPrefix="/profile/" />
+                <data android:scheme="https" android:host="tanamaaro.com" android:pathPrefix="/post/" />
+                <data android:scheme="https" android:host="tanamaaro.com" android:pathPrefix="/tag/" />
+                <data android:scheme="https" android:host="tanamaaro.com" android:pathPrefix="/event/" />
+                <data android:scheme="https" android:host="tanamaaro.com" android:pathPrefix="/events/" />
+                <data android:scheme="https" android:host="tanamaaro.com" android:pathPrefix="/battle/" />
+                <data android:scheme="https" android:host="tanamaaro.com" android:pathPrefix="/battles/" />
+            </intent-filter>
+        </activity>
+        <meta-data
+            android:name="flutterEmbedding"
+            android:value="2" />
+    </application>
+</manifest>

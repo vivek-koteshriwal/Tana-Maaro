@@ -35,10 +35,10 @@ export async function POST(req: Request) {
         });
 
         // Generate a new token with the updated username
-        const appToken = signToken({ 
-            id: authUser.id, 
-            email: authUser.email, 
-            username: normalizedUsername 
+        const appToken = signToken({
+            id: authUser.id,
+            email: authUser.email,
+            username: normalizedUsername
         });
 
         // Update the auth cookie
@@ -51,9 +51,9 @@ export async function POST(req: Request) {
             maxAge: 60 * 60 * 24 * 7 // 7 days
         });
 
-        return NextResponse.json({ 
-            success: true, 
-            username: normalizedUsername 
+        return NextResponse.json({
+            success: true,
+            username: normalizedUsername
         }, { status: 200 });
 
     } catch (error: any) {

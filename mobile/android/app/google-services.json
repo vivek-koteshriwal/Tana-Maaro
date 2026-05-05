@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "630828379936",
+    "firebase_url": "https://tana-maaro-6eea8-default-rtdb.firebaseio.com",
+    "project_id": "tana-maaro-6eea8",
+    "storage_bucket": "tana-maaro-6eea8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:630828379936:android:14c0ac188ca24e6e053145",
+        "android_client_info": {
+          "package_name": "com.tanamaaro.tanamaaro_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "630828379936-66172b1aoo29pvcb78gm5dcb6tpm5m8q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tanamaaro.tanamaaro_mobile",
+            "certificate_hash": "e909d8f3ee22899dc731c6405032b506317ff146"
+          }
+        },
+        {
+          "client_id": "630828379936-1lrg30g2i9m9plrgje3nv2ej7clq5b7i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZJD4flU5gBPEqs7VJ5O8yJjlQ5hVm1Qc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "630828379936-1lrg30g2i9m9plrgje3nv2ej7clq5b7i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "630828379936-i78fgu2ao2kq864nmg2lnfo41t0bfbrt.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.tanamaaro.tanamaaroMobile"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

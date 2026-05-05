@@ -131,7 +131,7 @@ You agree to defend, indemnify, and hold harmless Tanamaaro and its officers, di
 10. ACCOUNT TERMINATION
 Tanamaaro may suspend or terminate your account at any time — with or without prior notice — for violations of these Terms, illegal activity, or conduct that is harmful to the Platform or its community. No refund, appeal, or reinstatement is guaranteed.
 
-You may delete your own account by contacting support@tanamaaro.com. Content already featured or publicly shared may remain visible after deletion.
+You may delete your own account through the dedicated Delete Account flow inside the Platform. Content already featured or publicly shared may remain visible after deletion.
 
 The following sections survive account termination: Sections 3.2 (Prohibited Content), 5 (IP), 8 (Disclaimers), 9 (Indemnification), 11 (Dispute Resolution), and 12 (General Provisions).
 

@@ -1,31 +1,31 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { AlertTriangle, RotateCcw, TimerReset } from "lucide-react";
 import { useAuth } from "@/components/auth/auth-provider";
 import { Button } from "@/components/ui/button";
-import { isPendingDeletionWindowActive } from "@/lib/account-deletion";
+import { ACCOUNT_DELETION_WINDOW_DAYS, isPendingDeletionWindowActive } from "@/lib/account-deletion";
 
 export function AccountDeletionGate() {
     const { user, loading, logout, reactivateAccount } = useAuth();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [error, setError] = useState("");
 
-    const scheduledLabel = useMemo(() => {
+    const scheduledLabel = (() => {
         if (!user?.scheduledDeletionAt) {
-            return "7 days";
+            return `${ACCOUNT_DELETION_WINDOW_DAYS} days`;
         }
 
         const parsed = Date.parse(user.scheduledDeletionAt);
         if (Number.isNaN(parsed)) {
-            return "7 days";
+            return `${ACCOUNT_DELETION_WINDOW_DAYS} days`;
         }
 
         return new Intl.DateTimeFormat("en-US", {
             dateStyle: "medium",
             timeStyle: "short",
         }).format(new Date(parsed));
-    }, [user?.scheduledDeletionAt]);
+    })();
 
     if (loading || !user || !isPendingDeletionWindowActive(user)) {
         return null;

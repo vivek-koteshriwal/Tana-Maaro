@@ -2,6 +2,16 @@ export const ACCOUNT_DELETION_WINDOW_DAYS = 7;
 export const ACCOUNT_DELETION_WINDOW_MS =
     ACCOUNT_DELETION_WINDOW_DAYS * 24 * 60 * 60 * 1000;
 
+export const DELETE_ACCOUNT_REASONS = [
+    "Taking a break",
+    "Privacy concerns",
+    "Too many notifications",
+    "Found another platform",
+    "Not useful anymore",
+    "Temporary issue",
+    "Other",
+] as const;
+
 export const HIDDEN_ACCOUNT_STATUSES = new Set([
     "pending_deletion",
     "deactivated",

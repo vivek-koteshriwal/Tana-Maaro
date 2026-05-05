@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+        LaunchTheme — shown while Flutter engine initialises (pre-Android 12).
+        Uses the custom launch_background drawable: black bg + centred logo.
+        Extends Theme.Black.NoTitleBar so no status-bar chrome appears over
+        the splash on older devices.
+    -->
+    <style name="LaunchTheme" parent="@android:style/Theme.Black.NoTitleBar">
+        <item name="android:windowBackground">@drawable/launch_background</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <!--
+        NormalTheme — applied by Flutter once the first frame is rendered.
+        Background matches the app's dark canvas so the transition is seamless.
+    -->
+    <style name="NormalTheme" parent="@android:style/Theme.Black.NoTitleBar">
+        <item name="android:windowBackground">@color/splash_background</item>
+    </style>
+
+</resources>
