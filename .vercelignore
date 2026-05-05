@@ -1,0 +1,17 @@
+node_modules
+mobile
+.next
+.out
+.build
+.env*
+.npm_cache/
+.DS_Store
+.vscode/
+.idea/
+.vercel/
+public/uploads/
+coverage
+*.log
+*.pem
+*.swp
+*.swo

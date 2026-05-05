@@ -3,6 +3,7 @@ import { db } from "@/lib/db";
 import { verifyAuth } from "@/lib/auth";
 import { DELETE_ACCOUNT_REASONS, hasPendingDeletionExpired } from "@/lib/account-deletion";
 
+type DeleteReason = (typeof DELETE_ACCOUNT_REASONS)[number];
 const ALLOWED_REASONS = new Set(DELETE_ACCOUNT_REASONS);
 
 interface DeletionUserRecord {
@@ -18,7 +19,7 @@ export async function POST(req: Request) {
         }
 
         const { reason, feedback, confirmationText } = await req.json();
-        const normalizedReason = String(reason || "").trim();
+        const normalizedReason = String(reason || "").trim() as DeleteReason;
         const normalizedFeedback = String(feedback || "").trim();
 
         if (!ALLOWED_REASONS.has(normalizedReason)) {
